@@ -5,48 +5,63 @@ import {
   StaticParamList,
 } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { Image } from 'react-native';
-import bell from '../assets/bell.png';
-import newspaper from '../assets/newspaper.png';
+
+import Ionicons from '@expo/vector-icons/Ionicons';
+
 import { Home } from './screens/Home';
 import { Profile } from './screens/Profile';
 import { Settings } from './screens/Settings';
 import { Updates } from './screens/Updates';
 import { NotFound } from './screens/NotFound';
 
+// Nossas novas telas!
+import { ProductDetails } from './screens/ProductDetails';
+import { Cart } from './screens/Cart';
+
 const HomeTabs = createBottomTabNavigator({
   screens: {
     Home: {
       screen: Home,
       options: {
-        title: 'Feed',
+        title: 'Kabum',
         tabBarIcon: ({ color, size }) => (
-          <Image
-            source={newspaper}
-            tintColor={color}
-            style={{
-              width: size,
-              height: size,
-            }}
-          />
+          <Ionicons name="home-sharp" size={size} color={color} />
         ),
       },
     },
-    Updates: {
+    Departamentos: {
       screen: Updates,
       options: {
         tabBarIcon: ({ color, size }) => (
-          <Image
-            source={bell}
-            tintColor={color}
-            style={{
-              width: size,
-              height: size,
-            }}
-          />
+          <Ionicons name="list-sharp" size={size} color={color} />
         ),
       },
     },
+    Favoritos: {
+      screen: Updates,
+      options: {
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="heart-sharp" size={size} color={color} />
+        ),
+      },
+    },
+    "Minha conta": {
+      screen: Updates,
+      options: {
+        tabBarIcon: ({ color, size }) => (
+          <Ionicons name="person-sharp" size={size} color={color} />
+        ),
+      },
+    }
+  },
+  screenOptions: {
+    headerShown: false,
+    tabBarStyle: {
+      backgroundColor: '#0060B1', 
+      borderTopWidth: 0,         
+    },
+    tabBarActiveTintColor: '#FFFFFF',   
+    tabBarInactiveTintColor: '#A1C7E5',
   },
 });
 
@@ -57,6 +72,22 @@ const RootStack = createNativeStackNavigator({
       options: {
         title: 'Home',
         headerShown: false,
+      },
+    },
+    ProductDetails: {
+      screen: ProductDetails,
+      options: {
+        title: 'Detalhes do Produto',
+        headerStyle: { backgroundColor: '#0060B1' },
+        headerTintColor: '#FFF',
+      },
+    },
+    Cart: {
+      screen: Cart,
+      options: {
+        title: 'Meu Carrinho',
+        headerStyle: { backgroundColor: '#0060B1' },
+        headerTintColor: '#FFF',
       },
     },
     Profile: {
